@@ -14,7 +14,6 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repassword, setRepassword] = useState("");
-  console.log(email);
   const SubmitSignUp = async (e: any) => {
     e.preventDefault();
     const config = {
@@ -48,16 +47,16 @@ export default function Signup() {
         router.push("/signIn");
       }
     } catch (error) {
-      console.log(error);
+      return error;
     }
   };
 
   return (
-    <main className="flex flex-col w-full font-body bg-zinc-200 ">
+    <main className="flex flex-col w-full h-screen font-body  bg-zinc-100">
       <Nav />
-      <div className="flex justify-center m-2 h-fit mt-[78.05px] py-[32px]">
+      <div className="flex justify-center items-center m-2 min-h-[680px] h-full mt-[80px]">
         <div className="flex flex-col items-center justify-center w-[716px] h-[95%]">
-          <div className="w-[400px] h-[600px] bg-white rounded-[35px] p-[32px]">
+          <div className="w-[330px] md:w-[400px] h-[600px] bg-white rounded-[35px] p-[32px]">
             <p className="text-black font-bold text-[32px]">Sign Up</p>
             <div className="h-[450px]">
               <form

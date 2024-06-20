@@ -13,10 +13,8 @@ const Nav = ({}) => {
   const [menuClick, setMenuClick] = useState(false);
   const [user, setUser] = useState<[]>([]);
 
-  // console.log("userId: ",user.data.id)
   function handleMenuClick() {
     setMenuClick(!menuClick);
-    console.log(menuClick);
   }
   const handleSignInButton = async (e: any) => {
     router.push("/signIn");
@@ -36,31 +34,12 @@ const Nav = ({}) => {
   useEffect(() => {
     const { userData } = parseCookies();
     if (userData) {
-      console.log(JSON.parse(userData));
       setUser(JSON.parse(userData));
       setLoggedIn(true);
     } else {
       setLoggedIn(false);
     }
   }, []);
-
-  // useEffect(() => {
-  //     const handleAutoSignOut = () => {
-  //         const { userData, token } = parseCookies();
-  //         if (!userData || !token) {
-  //             handleLogoutButton();
-  //         }
-  //     };
-  //     handleAutoSignOut();
-  // }, []);
-
-  // let userData: any
-  // if (typeof window != 'undefined') {
-  //     const cookies: any = parseCookies()
-  //userData = cookies?.userData ? JSON.parse(cookies.userData) : "";
-  //userData = cookies.userData? JSON.parse(cookies.userData): "";
-  //     console.log("userData", userData)
-  // }
 
   return (
     <>
@@ -77,7 +56,7 @@ const Nav = ({}) => {
 
         {loggedIn ? (
           <>
-            <div className="flex">
+            <div className=" hidden xl:flex ">
               <div className="flex justify-center items-center w-[200px] h-[40px] bg-primary rounded-[50px] text-white ">
                 <p className="truncate text-[16px] font-semibold">
                   {Object(user).firstname}
@@ -91,32 +70,42 @@ const Nav = ({}) => {
                 <p className="text-[14px] text-zinc-400">Sign Out</p>
               </button>
             </div>
+            <div className="flex xl:hidden justify-end w-[140px] ">
+              <span
+                onClick={handleMenuClick}
+                className="material-symbols-outlined text-[30px]"
+              >
+                menu
+              </span>
+            </div>
+            {menuClick ? (
+              <>
+                <div className="flex justify-end xl:hidden w-[94vw] h-[300px] top-0 absolute mt-[78.05px] ">
+                  <div className="w-[300px] h-[100px] bg-primary">
+                    <div className=" ">
+                      <div className="flex justify-center items-center w-full h-[40px] bg-primary rounded-[50px] text-white ">
+                        <p className="truncate text-[16px] font-semibold">
+                          {Object(user).firstname}
+                        </p>
+                      </div>
+                      <div className="w-[250px] h-[2px] bg-zinc-500 mx-3"></div>
+                      <button
+                        onClick={handleSignOutButton} 
+                        className="flex justify-center items-center w-full h-[40px] bg-primary rounded-[50px] "
+                      >
+                        <p className="text-[14px] text-zinc-400">Sign Out</p>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
           </>
         ) : (
-          <>
-           {/* <button
-                className="hidden xl:flex justify-center items-center bg-secondary w-[135px] h-[40px] rounded-[50px] drop-shadow-lg"
-                onClick={handleSignInButton}
-              >
-                <p className="text-[16px] text-white font-semibold">Sign In</p>
-              </button> */}
-          </>
+          <></>
         )}
-
-        <div className="xl:hidden flex flex-col items-end  w-[300px] h-fit text-primary bg-red-200">
-          <span onClick={handleMenuClick} className="material-symbols-outlined">
-            menu
-          </span>
-          {menuClick ? (
-            <>
-              <div className="w-[200px] h-[300px] bg-tertiary top-0 absolute mt-[78px] ">
-                sx
-              </div>
-            </>
-          ) : (
-            <></>
-          )}
-        </div>
       </nav>
     </>
   );

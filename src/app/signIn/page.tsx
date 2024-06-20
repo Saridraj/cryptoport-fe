@@ -32,16 +32,16 @@ export default function Signin() {
         router.push("/");
       }
     } catch (error) {
-      console.log(error);
+      return error;
     }
   };
 
   return (
     <main className="flex flex-col w-full h-screen font-body  bg-zinc-100">
       <Nav />
-      <div className="flex justify-center items-center m-2 min-h-[580px] h-full mt-[80px]">
+      <div className="flex justify-center items-center m-2 min-h-[580px] h-full mt-[80px] ">
         <div className="flex flex-col items-center justify-center w-[716px] h-[95%] drop-shadow-lg">
-          <div className="w-[400px] h-fit bg-white rounded-[35px] p-[32px]">
+          <div className="w-[330px] md:w-[400px] h-fit bg-white rounded-[35px] p-[32px]">
             <div className="flex justify-center w-full">
               <p className="text-primary font-bold text-[32px] ">Sign In</p>
             </div>
@@ -86,7 +86,9 @@ export default function Signin() {
             <div className="flex justify-center text-black text-[12px]">
               <p className="mr-2">Need an account?</p>
               <a href="/signUp">
-                <p className="font-bold text-blue-500 underline">Create Account</p>
+                <p className="font-bold text-blue-500 underline">
+                  Create Account
+                </p>
               </a>
             </div>
           </div>
