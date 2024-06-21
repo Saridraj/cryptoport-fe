@@ -23,6 +23,7 @@ const Nav = ({}) => {
   const handleSignOutButton = () => {
     Cookies.remove("userData");
     Cookies.remove("token");
+    localStorage.setItem("portfolio", JSON.stringify([]))
     setLoggedIn(false);
     router.push("/signIn");
   };

@@ -89,8 +89,8 @@ export default function Home() {
               </div>
               {portfolio.length == 0 ? (
                 <>
-                  <div className="flex flex-col items-center  w-[350px] md:w-full md:min-w-[600px]   h-[400px]  bg-white rounded-[28px] p-4">
-                    <div className="flex justify-center items-center p-[32px] w-[750px] min-w-[600px] h-[300px] rounded-[24px] drop-shadow-md my-1 ">
+                  <div className="flex flex-col items-center  w-[330px] md:w-full md:min-w-[600px]   h-[400px]  bg-white rounded-[28px] p-4">
+                    <div className="flex justify-center items-center p-[32px] w-[310px] md:w-[750px] md:min-w-[600px] h-[300px] rounded-[24px] drop-shadow-md my-1 ">
                       <p className="text-primary">
                         There are no assets in the portfolio yet.
                       </p>

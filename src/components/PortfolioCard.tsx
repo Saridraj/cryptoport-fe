@@ -13,7 +13,7 @@ const PortfolioCard: React.FC<Props> = ({ portfolioList }) => {
   const portfolio = Object(portfolioList);
 
   return (
-    <div className="flex justify-between items-center p-[32px] bg-white w-[310px] md:w-full md:min-w-[600px]  h-[80px] rounded-[50px] drop-shadow-md my-1">
+    <div className="flex justify-between items-center p-[32px] bg-white w-[310px] md:w-full md:min-w-[600px]  h-[80px] rounded-[50px] drop-shadow-lg my-1">
       <div className=" hidden md:flex w-[50px] h-[50px] rounded-[50px] overflow-hidden drop-shadow-lg ">
         <Image src={portfolio.logo} alt="coin_logo" width={50} height={50} />
       </div>
