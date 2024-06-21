@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 
 export default function Home() {
   let userId: string = "";
-  let y;
+  let y: string[] = [];
 
   if (typeof window !== "undefined") {
     const x = localStorage.getItem("portfolio");
@@ -22,10 +22,11 @@ export default function Home() {
     const userData = cookies?.userData ? JSON.parse(cookies.userData) : "";
     userId = userData.id;
   }
-  const [portfolio, setPortfolio] = useState<[]>(y);
+  const [portfolio, setPortfolio] = useState<string[]>(y);
   const [loggedIn, setLoggedIn] = useState(false);
   const [loader, setLoader] = useState(false);
   const router = useRouter();
+  console.log(portfolio.length);
 
   if (userId == "") {
     router.push("/signIn");
@@ -60,7 +61,7 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const [portfolioResponse] = await Promise.all([getPortfolio()]);
-        
+
         if (portfolioResponse.data !== "") {
           localStorage.setItem(
             "portfolio",
@@ -94,9 +95,7 @@ export default function Home() {
                 <>
                   <div className="flex flex-col items-center  w-[330px] md:w-full md:min-w-[600px]   h-[400px]  bg-white rounded-[28px] p-4">
                     <div className="flex justify-center items-center p-[32px] w-[310px] md:w-[750px] md:min-w-[600px] h-[300px] rounded-[24px] drop-shadow-md my-1 ">
-                      <p className="text-primary">
-                        Data Loading...
-                      </p>
+                      <p className="text-primary">Data Loading...</p>
                     </div>
                   </div>
                 </>
@@ -120,7 +119,6 @@ export default function Home() {
                       P/L(24h)
                     </div>
                   </div>
-
                   <Portfolios portfolios={portfolio} />
                 </>
               )}
