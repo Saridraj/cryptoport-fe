@@ -25,7 +25,7 @@ The Cryptoport frond system is an application that operates on the web interface
 ```bash
 $ NEXT_PUBLIC_API_URL
 ```
-## 4. Project Run
+## 4. Project Run in PORT 3000
 ```bash
 $ docker-compose up --build
 ```
