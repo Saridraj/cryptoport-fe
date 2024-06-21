@@ -24,6 +24,7 @@ export default function Home() {
   }
   const [portfolio, setPortfolio] = useState<[]>(y);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [loader, setLoader] = useState(false);
   const router = useRouter();
 
   if (userId == "") {
@@ -42,6 +43,9 @@ export default function Home() {
       `${process.env.NEXT_PUBLIC_API_URL}/portfolio/${userId}`,
       config
     );
+    if (portfolio.status == 200) {
+      setLoader(true);
+    }
     return portfolio;
   };
 
@@ -56,6 +60,7 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const [portfolioResponse] = await Promise.all([getPortfolio()]);
+        
         if (portfolioResponse.data !== "") {
           localStorage.setItem(
             "portfolio",
@@ -73,12 +78,10 @@ export default function Home() {
     };
     fetchData();
   }, []);
-
   return (
     <main className="flex flex-col  w-full min-h-screen font-body  ">
       <Nav />
       <div className="flex justify-center items-center bg-zinc-100  min-h-[80vh] w-full mt-[80px] py-[50px] ">
-
         {loggedIn ? (
           <>
             <div className="flex flex-col items-center w-[330px] md:w-[650px] lg:w-[850px]  h-fit  rounded-[28px] p-4 bg-white">
@@ -87,12 +90,12 @@ export default function Home() {
                   Portfolio
                 </h1>
               </div>
-              {portfolio.length == 0 ? (
+              {!loader ? (
                 <>
                   <div className="flex flex-col items-center  w-[330px] md:w-full md:min-w-[600px]   h-[400px]  bg-white rounded-[28px] p-4">
                     <div className="flex justify-center items-center p-[32px] w-[310px] md:w-[750px] md:min-w-[600px] h-[300px] rounded-[24px] drop-shadow-md my-1 ">
                       <p className="text-primary">
-                        There are no assets in the portfolio yet.
+                        Data Loading...
                       </p>
                     </div>
                   </div>
